@@ -205,7 +205,7 @@
     if (open) sub = t("closesAt").replace("{t}", fmtH(h[1]));
     else if (n.mins < h[0] * 60) sub = t("opensAt").replace("{t}", fmtH(h[0]));
     else sub = t("opensTomorrow").replace("{t}", fmtH(HOURS[(n.day + 1) % 7][0]));
-    box.querySelector("span").textContent = sub;
+    box.querySelector(".status__sub").textContent = sub;
   }
   renderStatus(); langHooks.push(renderStatus); setInterval(renderStatus, 60000);
 

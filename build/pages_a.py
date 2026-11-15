@@ -347,7 +347,7 @@ def hours():
 <section class="section">
   <div class="container hours-wrap">
     <div class="reveal from-left">
-      <div class="card status" data-status><span class="status__dot"></span><div><b>—</b><span></span></div></div>
+      <div class="card status" data-status><i class="status__dot" aria-hidden="true"></i><div><b>—</b><span class="status__sub"></span></div></div>
       <table class="hours"><tbody>{tr}</tbody></table>
       <div class="note" style="margin-top:16px">{ico("clock")}{T("Times shown in Amman local time.", "الأوقات حسب توقيت عمّان المحلي.")}</div>
     </div>
