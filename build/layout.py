@@ -91,7 +91,7 @@ def header(active):
 </header>
 <div class="drawer" aria-hidden="false">
   <div class="drawer__bg"></div>
-  <div class="drawer__panel">
+  <div class="drawer__panel" data-lenis-prevent>
     <nav aria-label="Mobile">{dlinks}</nav>
     <div class="drawer__foot">
       <a class="btn btn--primary" href="contact.html#trial">{T("Book a Free Trial", "احجز حصة تجريبية مجانية")}</a>
