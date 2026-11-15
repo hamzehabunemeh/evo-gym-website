@@ -1,7 +1,7 @@
 /* EVO GYM — site script */
 (function () {
   "use strict";
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/Hamzehabunemeh@gmail.com";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/hamzehabunemeh@gmail.com";
   var WA = "https://wa.me/962790080089";
   var root = document.documentElement;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -20,6 +20,7 @@
       okJob: "Thank you! Your application has been received. We'll contact you if your profile matches.",
       err: 'Something went wrong while sending. Please try again or <a href="' + WA + '" target="_blank" rel="noopener">message us on WhatsApp</a>.',
       muted: "Sound off", unmuted: "Sound on",
+      activate: "This form is waiting for one-time activation by the gym. Please try again later or message us on WhatsApp.",
       days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     },
     ar: {
@@ -34,6 +35,7 @@
       okJob: "شكرًا لك! تم استلام طلبك، وسنتواصل معك إذا كان ملفك مناسبًا.",
       err: 'حدث خطأ أثناء الإرسال. حاول مرة أخرى أو <a href="' + WA + '" target="_blank" rel="noopener">راسلنا على واتساب</a>.',
       muted: "الصوت مغلق", unmuted: "الصوت يعمل",
+      activate: "هذا النموذج بانتظار تفعيل لمرة واحدة من إدارة النادي. يرجى المحاولة لاحقًا أو مراسلتنا على واتساب.",
       days: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"]
     }
   };
@@ -311,9 +313,15 @@
             status.className = "form-status ok";
             status.innerHTML = ICO_OK + "<span>" + t(form.getAttribute("data-remote") === "job" ? "okJob" : "ok") + "</span>";
             form.reset(); toggleTrial();
-          } else throw new Error("fail");
+          } else {
+            var m = res.j && res.j.message ? String(res.j.message) : "";
+            var e = new Error("fail"); e.activation = /activat/i.test(m); throw e;
+          }
         })
-        .catch(function () { status.className = "form-status err"; status.innerHTML = ICO_ERR + "<span>" + t("err") + "</span>"; })
+        .catch(function (e) {
+          status.className = "form-status err";
+          status.innerHTML = ICO_ERR + "<span>" + t(e && e.activation ? "activate" : "err") + "</span>";
+        })
         .then(function () { btn.disabled = false; btn.classList.remove("loading"); });
     });
   });
