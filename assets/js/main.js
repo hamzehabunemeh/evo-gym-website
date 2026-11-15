@@ -1,7 +1,7 @@
 /* EVO GYM — site script */
 (function () {
   "use strict";
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/hamzehabunemeh@gmail.com";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/0e3e2c5f6f66a42868cfe5e5488810b1";
   var WA = "https://wa.me/962790080089";
   var root = document.documentElement;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
